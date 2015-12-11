@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from MindwaveMobileRawReader import MindwaveMobileRawReader
 import struct
 import collections

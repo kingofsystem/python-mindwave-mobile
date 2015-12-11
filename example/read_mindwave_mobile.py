@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import time
 import bluetooth
 from mindwavemobile.MindwaveDataPoints import RawDataPoint, AttentionDataPoint
