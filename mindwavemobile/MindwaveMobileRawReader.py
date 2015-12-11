@@ -44,7 +44,7 @@ class MindwaveMobileRawReader:
                     (mindwaveMobileAddress, 1))
                 self._isConnected = True
             except bluetooth.btcommon.BluetoothError as error:
-                print "Could not connect: ", error, "; Retrying in 5s..."
+                print("Could not connect: ", error, "; Retrying in 5s...")
                 time.sleep(5) 
            
 

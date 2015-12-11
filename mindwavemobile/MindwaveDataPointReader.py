@@ -35,7 +35,7 @@ class MindwaveDataPointReader:
         self._goToStartOfNextPacket()
         payloadBytes, checkSum = self._readOnePacket()
         if (not self._checkSumIsOk(payloadBytes, checkSum)):
-            print "checksum of packet was not correct, discarding packet..."
+            print("checksum of packet was not correct, discarding packet...")
             return self._readDataPointsFromOnePacket();
         else:
             dataPoints = self._readDataPointsFromPayload(payloadBytes)
