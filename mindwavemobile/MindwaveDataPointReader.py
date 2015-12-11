@@ -5,8 +5,8 @@ import collections
 from MindwavePacketPayloadParser import MindwavePacketPayloadParser
 
 class MindwaveDataPointReader:
-    def __init__(self, address=None):
-        self._mindwaveMobileRawReader = MindwaveMobileRawReader(address=address)
+    def __init__(self, address=None, btAddres=None, btNum=None):
+        self._mindwaveMobileRawReader = MindwaveMobileRawReader(address=address, btAddres, btNum) # Это мой код, твою мать
         self._dataPointQueue = collections.deque()
 
     def start(self):

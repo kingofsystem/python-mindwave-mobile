@@ -5,19 +5,19 @@ import textwrap
 
 class MindwaveMobileRawReader:
     START_OF_PACKET_BYTE = 0xaa;
-    def __init__(self, address=None):
+    def __init__(self, address=None, btAddres=None, btNum=None):
         self._buffer = [];
         self._bufferPosition = 0;
         self._isConnected = False;
         self._mindwaveMobileAddress = address
+        self._btAddres = btAddres
+        self._btNum = btNum
         
     def connectToMindWaveMobile(self):
         # First discover mindwave mobile address, then connect.
         # Headset address of my headset was'9C:B7:0D:72:CD:02';
         # not sure if it really can be different?
         # now discovering address because of https://github.com/robintibor/python-mindwave-mobile/issues/4
-        if (self._mindwaveMobileAddress is None):
-            self._mindwaveMobileAddress = self._findMindwaveMobileAddress()
         if (self._mindwaveMobileAddress is not None):            
             print ("Discovered Mindwave Mobile...")
             self._connectToAddress(self._mindwaveMobileAddress)
@@ -33,6 +33,10 @@ class MindwaveMobileRawReader:
         
     def _connectToAddress(self, mindwaveMobileAddress):
         self.mindwaveMobileSocket = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+        #Если ты указал адресс в конструкторе, то мы подключаемся через адаптер, который нада!
+        if self._btAddres not == None and self._btNum not == None:
+            self.mindwaveMobileSocket.bind((self._btAddres, self._btNum,)) #Внутри кортеж!!!
+
         while (not self._isConnected):
             try:
                 self.mindwaveMobileSocket.connect(

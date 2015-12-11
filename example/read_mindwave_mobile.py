@@ -1,16 +1,17 @@
 import time
 import bluetooth
-from mindwavemobile.MindwaveDataPoints import RawDataPoint
+from mindwavemobile.MindwaveDataPoints import RawDataPoint, AttentionDataPoint
 from mindwavemobile.MindwaveDataPointReader import MindwaveDataPointReader
 import textwrap
 
 if __name__ == '__main__':
-    mindwaveDataPointReader = MindwaveDataPointReader()
+    #Я не понял, что делает последний аргумент
+    mindwaveDataPointReader = MindwaveDataPointReader('<Аддрес майндвэйва>', '<Аддрес адаптера>', 0) #Последняя - любая цыферка вроде
     mindwaveDataPointReader.start()
-    if (mindwaveDataPointReader.isConnected()):    
+    if (mindwaveDataPointReader.isConnected()):
         while(True):
             dataPoint = mindwaveDataPointReader.readNextDataPoint()
-            if (not dataPoint.__class__ is RawDataPoint):
+            if (not dataPoint.__class__ is AttentionDataPoint):
                 print dataPoint
     else:
         print(textwrap.dedent("""\
